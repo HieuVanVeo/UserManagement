@@ -1,0 +1,53 @@
+micronaut:
+  application:
+    name: userManagement
+  server:
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowCredentials: true
+          allowedMethods:
+            - OPTIONS
+            - POST
+            - PUT
+            - GET
+            - DELETE
+          exposedHeaders:
+            - Access-Control-Allow-Origin
+            - Access-Control-Allow-Headers
+            - Access-Control-Request-Method
+            - Access-Control-Request-Headers
+            - Origin
+            - Cache-Control
+            - Content-Type
+            - Authorization
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: naoseiquequeeuvootaaquimaiquiinfernoessecagulotemquesermuitogrande
+#      intercept-url-map:
+#        - pattern: "/api/home/**"
+#          http-method: POST
+#          access:
+#            - isAnonymous()
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5433/user_management?ssl=false
+    username: hieunv
+    password: 123456
+    driverClassName: org.postgresql.Driver
+jpa:
+  default:
+    packages-to-scan:
+      - 'com.micronaut'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
+        enable_lazy_load_no_trans: true
